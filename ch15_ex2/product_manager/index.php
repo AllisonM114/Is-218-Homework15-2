@@ -8,6 +8,13 @@ require('../model/product_db.php');
 require_once('../model/fields.php');
 require_once('../model/valide.php');
 
+    //Add fields
+$validate = new Validate();
+$fields = $validate->getFields();
+$fields->addField('code');
+$fields->addField('name');
+$fields->addField('price', 'This must be a valid number.');
+
 $action = filter_input(INPUT_POST, 'action');
 if ($action == NULL) {
     $action = filter_input(INPUT_GET, 'action');
@@ -60,6 +67,19 @@ if ($action == 'list_products') {
         $current_category = CategoryDB::getCategory($category_id);
         $product = new Product($current_category, $code, $name, $price);
         ProductDB::addProduct($product);
+
+    // Validate form data
+    $validate->text('code', $code);
+    $validate->text('name', $name);
+    $validate->text('price', $price);
+
+    //Load appropriate view based on hasErrors
+    if ($fields->hasErrors()) {
+        include 'view/register.php';
+    } else {
+        include 'view/success.php';
+    }
+    break;
 
         // Display the Product List page for the current category
         header("Location: .?category_id=$category_id");

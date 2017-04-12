@@ -16,15 +16,18 @@
 
         <label>Code:</label>
         <input type="input" name="code">
-        <br>
+        <?php echo $fields->getField('code')->getHTML(); ?>
+	<br>
 
         <label>Name:</label>
         <input type="input" name="name">
-        <br>
+        <?php echo $fields->getField('name')->getHTML(); ?>
+	<br>
 
         <label>List Price:</label>
         <input type="input" name="price">
-        <br>
+        <?php echo $fields->getField('price')->getHTML(); ?>
+	<br>
 
         <label>&nbsp;</label>
         <input type="submit" value="Add Product">
