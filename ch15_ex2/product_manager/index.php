@@ -5,6 +5,9 @@ require('../model/category_db.php');
 require('../model/product.php');
 require('../model/product_db.php');
 
+require_once('../model/fields.php');
+require_once('../model/valide.php');
+
 $action = filter_input(INPUT_POST, 'action');
 if ($action == NULL) {
     $action = filter_input(INPUT_GET, 'action');
