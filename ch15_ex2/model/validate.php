@@ -37,7 +37,7 @@ class Validate {
 
     // Validate a field with a generic pattern
     public function pattern($name, $value, $pattern, $message,
-            $required = true) {
+            $required = true, $min = 1, $max = 200) {
 
         // Get Field object
         $field = $this->fields->getField($name);
